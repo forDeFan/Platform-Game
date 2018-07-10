@@ -2,4 +2,6 @@
 
 HTML game on Canvas with Phaser framework and JS.
 
-Made for my kids as fun and by side learning of JS object programming by prototypes. Still developing
+Made for my kids as fun and by side learning of JS object programming by prototypes. Still developing.
+
+Check and play at https://tomaszgutowski.github.io/Game1/
