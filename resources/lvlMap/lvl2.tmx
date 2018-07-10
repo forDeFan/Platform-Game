@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="70" height="10" tilewidth="64" tileheight="64" infinite="0" nextobjectid="53">
+ <tileset firstgid="1" name="tiles" tilewidth="64" tileheight="64" tilecount="64" columns="8">
+  <image source="../graphic/tiles/tiles.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="65" name="Crate" tilewidth="106" tileheight="106" tilecount="1" columns="1">
+  <image source="../graphic/objects/Crate.png" width="106" height="106"/>
+ </tileset>
+ <tileset firstgid="66" name="door" tilewidth="512" tileheight="512" tilecount="1" columns="1">
+  <image source="../graphic/objects/door.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="67" name="water" tilewidth="420" tileheight="420" tilecount="1" columns="1">
+  <image source="../graphic/objects/water.png" width="420" height="420"/>
+ </tileset>
+ <tileset firstgid="68" name="spikes" tilewidth="243" tileheight="187" tilecount="1" columns="1">
+  <image source="../graphic/objects/spikes.png" width="243" height="187"/>
+ </tileset>
+ <tileset firstgid="69" name="ArrowSign" tilewidth="86" tileheight="87" tilecount="0" columns="1">
+  <image source="../graphic/objects/ArrowSign.png" width="86" height="87"/>
+ </tileset>
+ <tileset firstgid="69" name="compass" tilewidth="105" tileheight="79" tilecount="1" columns="1">
+  <image source="../graphic/objects/compass.png" width="105" height="79"/>
+ </tileset>
+ <tileset firstgid="70" name="starGold" tilewidth="39" tileheight="38" tilecount="1" columns="1">
+  <image source="../graphic/objects/starGold.png" width="39" height="38"/>
+ </tileset>
+ <tileset firstgid="71" name="key" tilewidth="200" tileheight="200" tilecount="1" columns="1">
+  <image source="../graphic/objects/key.png" width="200" height="200"/>
+ </tileset>
+ <tileset firstgid="72" name="Bush" tilewidth="100" tileheight="64" tilecount="1" columns="1">
+  <image source="../graphic/objects/Bush.png" width="100" height="64"/>
+ </tileset>
+ <tileset firstgid="73" name="jump" tilewidth="50" tileheight="140" tilecount="1" columns="1">
+  <image source="../graphic/objects/gb.png" width="50" height="140"/>
+ </tileset>
+ <tileset firstgid="74" name="live" tilewidth="2362" tileheight="2362" tilecount="1" columns="1">
+  <image source="../graphic/objects/heart1.png" width="2362" height="2362"/>
+ </tileset>
+ <tileset firstgid="75" name="liane" tilewidth="672" tileheight="4628" tilecount="1" columns="1">
+  <image source="../graphic/objects/liane.png" width="672" height="4628"/>
+ </tileset>
+ <layer name="Ground" width="70" height="10">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,41,42,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41,42,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41,42,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+2,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0,0,0,0,0,0,0,0,
+18,18,19,0,0,0,0,0,0,0,0,0,0,0,13,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0,0,0,0,0,0,0,0,1,3,0,0,13,12,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,1,3,0,0,0,0,0,0,9,11,0,0,0,0,0,0,0,13,12,0,0,13,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,33,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,
+0,0,0,0,0,0,17,19,0,0,0,0,0,13,33,11,0,0,0,0,0,0,0,9,11,0,0,9,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,33,10,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17,18,
+0,0,0,0,0,0,0,0,0,0,0,0,0,9,10,34,3,0,0,0,0,0,0,9,34,2,2,33,11,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,3,0,0,0,0,1,33,26,25,11,0,0,0,0,0,1,2,2,3,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,5,10,10,4,0,0,0,52,0,0,5,10,26,25,10,4,0,0,0,0,0,0,0,0,5,10,26,25,10,26,25,4,0,0,0,0,5,10,34,33,4,0,0,0,0,0,20,26,25,21,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="Objects">
+  <object id="1" name="door" gid="66" x="3835" y="523" width="136" height="136"/>
+  <object id="4" name="water" gid="67" x="4030" y="640" width="449.5" height="55"/>
+  <object id="5" name="spikes" gid="68" x="2881" y="640" width="263" height="103"/>
+  <object id="7" name="water" gid="67" x="3455" y="639" width="323" height="55"/>
+  <object id="14" name="water" gid="67" x="1855" y="639" width="515.5" height="55"/>
+  <object id="17" name="water" gid="67" x="1087.17" y="641.667" width="387.833" height="55"/>
+  <object id="18" name="spikes" gid="68" x="635.667" y="640.667" width="195" height="103"/>
+  <object id="19" name="spikes" gid="68" x="394.333" y="640" width="263" height="103"/>
+  <object id="20" name="spikes" gid="68" x="152.333" y="640" width="263" height="103"/>
+  <object id="21" name="spikes" gid="68" x="-3" y="638.667" width="227" height="103"/>
+  <object id="22" name="star" gid="70" x="3366" y="286" width="39" height="38"/>
+  <object id="24" name="star" gid="70" x="3633" y="281" width="39" height="38"/>
+  <object id="25" name="star" gid="70" x="3949" y="140" width="39" height="38"/>
+  <object id="26" name="star" gid="70" x="3001" y="410" width="39" height="38"/>
+  <object id="27" name="star" gid="70" x="2729" y="250" width="39" height="38"/>
+  <object id="28" name="star" gid="70" x="2566" y="125" width="39" height="38"/>
+  <object id="29" name="star" gid="70" x="1514" y="91" width="39" height="38"/>
+  <object id="30" name="star" gid="70" x="2090" y="386" width="39" height="38"/>
+  <object id="31" name="star" gid="70" x="962" y="286" width="39" height="38"/>
+  <object id="32" name="star" gid="70" x="722" y="228" width="39" height="38"/>
+  <object id="33" name="star" gid="70" x="555" y="465" width="39" height="38"/>
+  <object id="34" name="key" gid="71" x="4417" y="361" width="48" height="44"/>
+  <object id="36" name="star" gid="70" x="2396" y="178" width="39" height="38"/>
+  <object id="39" name="jump" gid="73" x="2555" y="362" width="29" height="73"/>
+  <object id="40" name="star" gid="70" x="1628" y="40" width="39" height="38"/>
+  <object id="41" name="star" gid="70" x="1677" y="108" width="39" height="38"/>
+  <object id="42" name="star" gid="70" x="1479" y="217" width="39" height="38"/>
+  <object id="43" name="star" gid="70" x="1612" y="212" width="39" height="38"/>
+  <object id="44" name="star" gid="70" x="1774" y="198" width="39" height="38"/>
+  <object id="49" name="liane" gid="75" x="4137" y="393" width="59" height="348"/>
+  <object id="51" name="liane" gid="75" x="2082" y="384" width="59" height="348"/>
+  <object id="52" name="liane" gid="75" x="678" y="390" width="59" height="348"/>
+ </objectgroup>
+</map>
