@@ -3,8 +3,8 @@
 var Platformowa = Platformowa || {}; 
 var configuration =
 {
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: window.innerWidth < 480 ? 480 : window.innerHeight,
+    height: window.innerHeight -32 <320 ? 320 : window.innerHeight,
     //forcing canvas for better FPS ratio on large screen
     render: Phaser.CANVAS
 };
