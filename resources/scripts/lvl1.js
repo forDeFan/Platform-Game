@@ -77,7 +77,7 @@ Platformowa.lvl1.prototype =
         gmMan.door = this.door;
         this.door.alpha = 0.1;
         
-        //effect on key
+        //movement effect on key
         var keyTween = this.game.add.tween(this.key).to({y: -10}, 800, Phaser.Easing.Linear.None, true);
         keyTween.yoyo(900, true).loop(true);
         

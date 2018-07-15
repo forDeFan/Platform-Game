@@ -85,6 +85,7 @@ Platformowa.loadingScreen.prototype =
         this.load.image('key', 'resources/graphic/objects/key.png');
         this.load.image('bush', 'resources/graphic/objects/bush.png');
         this.load.image('jump', 'resources/graphic/objects/gb.png');
+        this.load.image('crate', 'resources/graphic/objects/Crate.png');
         
         //Custom objects on map
         this.load.image('platform', 'resources/graphic/objects/platform.png');

@@ -8,6 +8,7 @@ var Bonus = function(game, x, y, typeImg)
     game.physics.enable(this);
     this.type = typeImg
     this.body.gravity.y = 0;
+    this.body.immovable = true;
     
     if(this.type === 'star')
     {
@@ -36,7 +37,7 @@ Bonus.prototype.jumpHeroBonus = function(Hero)
         case 'key':
             this.kill();
             this.bonusCollected.play('', 0, 0.06, false, true );
-            Hero.openDoor = true;
+            gmMan.hero.openDoor = true;
             
             this.game.time.events.add(1, function() {   this.game.add.tween(gmMan.door).to({alpha:1}, 700, Phaser.Easing.Linear.None, true);}, this);
             
@@ -51,14 +52,23 @@ Bonus.prototype.jumpHeroBonus = function(Hero)
             break;
         
         case 'arrow':
-            uiMan.eventTextShow('Uwaga piły ! Strzeż się !', this.body.x, src.height*0.2, 40, 200, 200, true);
+            uiMan.eventTextShow('Uwaga ! Ruchome skrzynie !', this.body.x, src.height*0.2, 40, 200, 200, true);
             
             break;
             
         case 'jump':
-            Hero.body.velocity.y -= 550;
+            gmMan.hero.body.velocity.y -= 550;
             this.kill();
             this.bonusCollected.play('', 0, 0.06, false, true );
+            
+            break;
+            
+        case 'crate':
+            //when hero 
+            this.rotationSpeed = 50;
+            this.body.angularVelocity = this.rotationSpeed;
+            
+            gmMan.hero.body.x += this.body.angularVelocity/15;
             
             break;
     }    
