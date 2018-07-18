@@ -22,7 +22,7 @@ Platformowa.mainMenu.prototype =
         this.background.scale.setTo(1, 0.65);
         
         //Main menu header
-        var headerText = customMethods.newText(this.game.width*0.5, (this.game.height*0.5) - 220, 'Go Monsters !!', 50, 0.5, 0.5, 'center', 'red', 'orange', 2);
+        this.headerText = customMethods.newText(this.game.width*0.5, (this.game.height*0.5) - 220, 'Go Monsters !!', 50, 0.5, 0.5, 'center', 'red', 'orange', 2);
         
         var blurX = src.add.filter('BlurX');
         var blurY = src.add.filter('BlurY');
@@ -99,24 +99,24 @@ Platformowa.mainMenu.prototype =
         //icons and text on info page
         
         //star
-        this.starIcon = customMethods.newSprite(this.game.width*0.4, this.game.height*0.35, 'star');
+        this.starIcon = customMethods.newSprite(this.game.width*0.4, this.headerText.y + textIconOffset/2, 'star');
         //stars text
         this.infoStars = customMethods.newText(this.starIcon.x + textIconOffset, this.starIcon.y, infoStars, 29, 0.5, 0.5, 'red', 'orange', 1);
         
         //jump
-        this.jumpIcon = customMethods.newSprite(this.game.width*0.4, this.starIcon.y + textIconOffset/1.7, 'jump');
+        this.jumpIcon = customMethods.newSprite(this.game.width*0.4, this.starIcon.y + textIconOffset/2.2, 'jump');
         this.jumpIcon.scale.setTo(0.4);
         //jump text
         this.infoJump = customMethods.newText(this.jumpIcon.x + textIconOffset, this.jumpIcon.y, infoJump, 29, 0.5, 0.5, 'red', 'orange', 1);
         
         //key
-        this.keyIcon = customMethods.newSprite(this.game.width*0.32, this.jumpIcon.y + textIconOffset/1.7, 'key');
+        this.keyIcon = customMethods.newSprite(this.game.width*0.32, this.jumpIcon.y + textIconOffset/2.2, 'key');
         this.keyIcon.scale.setTo(0.2);
         //key text
         this.infoKey = customMethods.newText(this.keyIcon.x + textIconOffset *1.7, this.keyIcon.y, infoKey, 29, 0.5, 0.5, 'red', 'orange', 1);
         
         //door
-        this.doorIcon = customMethods.newSprite(this.game.width*0.37, this.keyIcon.y + textIconOffset/1.7, 'door');
+        this.doorIcon = customMethods.newSprite(this.game.width*0.37, this.keyIcon.y + textIconOffset/2.2, 'door');
         this.doorIcon.scale.setTo(0.1);
         //door text
         this.infoDoor = customMethods.newText(this.doorIcon.x + textIconOffset*1.2, this.doorIcon.y, infoDoor, 29, 0.5, 0.5, 'red', 'orange', 1);
