@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.5" orientation="orthogonal" renderorder="right-down" width="70" height="10" tilewidth="64" tileheight="64" infinite="0" nextobjectid="26">
+ <tileset firstgid="1" name="tiles" tilewidth="64" tileheight="64" tilecount="64" columns="8">
+  <image source="../graphic/tiles/tiles.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="65" name="water" tilewidth="420" tileheight="420" tilecount="1" columns="1">
+  <image source="../graphic/objects/water.png" width="420" height="420"/>
+ </tileset>
+ <tileset firstgid="66" name="Crate" tilewidth="106" tileheight="106" tilecount="1" columns="1">
+  <image source="../graphic/objects/Crate.png" width="106" height="106"/>
+ </tileset>
+ <tileset firstgid="67" name="spikes" tilewidth="243" tileheight="187" tilecount="1" columns="1">
+  <image source="../graphic/objects/spikes.png" width="243" height="187"/>
+ </tileset>
+ <tileset firstgid="68" name="door" tilewidth="512" tileheight="512" tilecount="1" columns="1">
+  <image source="../graphic/objects/door.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="69" name="key" tilewidth="200" tileheight="200" tilecount="1" columns="1">
+  <image source="../graphic/objects/key.png" width="200" height="200"/>
+ </tileset>
+ <layer name="Ground" width="70" height="10">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,
+2,2,2,3,0,0,0,0,0,0,9,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,17,18,
+10,10,10,11,0,0,0,0,0,0,9,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,33,11,0,0,0,0,0,0,0,0,1,2,3,0,0,0,0,0,0,0,0,1,2,3,0,0,0,0,1,2,2,2,3,0,0,0,0,0,0,0,0,
+10,10,10,34,2,12,0,0,0,0,9,34,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,33,10,34,2,2,3,0,0,0,0,0,9,10,34,2,2,3,0,0,0,0,0,9,10,11,0,0,0,0,9,10,10,10,11,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup name="Objects">
+  <object id="10" name="water" gid="65" x="380" y="641" width="262" height="43"/>
+  <object id="11" name="crate" gid="66" x="1203" y="406" width="106" height="106"/>
+  <object id="12" name="spikes" gid="67" x="2175" y="640.5" width="176" height="101"/>
+  <object id="13" name="spikes" gid="67" x="2333" y="639" width="170" height="101"/>
+  <object id="14" name="spikes" gid="67" x="2874" y="640" width="179" height="101"/>
+  <object id="15" name="spikes" gid="67" x="3028" y="639" width="177" height="101"/>
+  <object id="16" name="water" gid="65" x="3390.67" y="639.667" width="260.667" height="43"/>
+  <object id="17" name="door" gid="68" x="3730" y="522" width="154" height="136"/>
+  <object id="19" name="water" gid="65" x="3968.67" y="641.667" width="508.667" height="43"/>
+  <object id="22" name="crate" gid="66" x="4108" y="560" width="106" height="106"/>
+  <object id="23" name="key" gid="69" x="4408" y="377" width="49" height="48"/>
+  <object id="24" name="crate" gid="66" x="1485" y="472" width="106" height="106"/>
+  <object id="25" name="crate" gid="66" x="921" y="446" width="106" height="106"/>
+ </objectgroup>
+</map>

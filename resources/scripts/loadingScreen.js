@@ -72,6 +72,7 @@ Platformowa.loadingScreen.prototype =
         this.load.tilemap('lvl1', 'resources/lvlMap/lvl1.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('lvl2', 'resources/lvlMap/lvl2.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('lvl3', 'resources/lvlMap/lvl3.json', null, Phaser.Tilemap.TILED_JSON);
+        this.load.tilemap('lvl4', 'resources/lvlMap/lvl4.json', null, Phaser.Tilemap.TILED_JSON);
         
         //Map tiles
         this.load.image('ground', 'resources/graphic/tiles/tiles.png');
@@ -96,9 +97,9 @@ Platformowa.loadingScreen.prototype =
     
     create: function()
     {
-        this.state.start('mainMenu');
+        //this.state.start('mainMenu');
         //this.state.start('gameOver');
-        //this.state.start('Poziom 3');
+        this.state.start('Poziom 4');
     },
     
     loadUpdate: function()

@@ -21,6 +21,7 @@ Platformowa.game.state.add('splashScreen', Platformowa.splashScreen);
 Platformowa.game.state.add('Poziom 1', Platformowa.lvl1);
 Platformowa.game.state.add('Poziom 2', Platformowa.lvl2);
 Platformowa.game.state.add('Poziom 3', Platformowa.lvl3);
+Platformowa.game.state.add('Poziom 4', Platformowa.lvl4);
 
 //Game state start
 Platformowa.game.state.start('Launcher'); 

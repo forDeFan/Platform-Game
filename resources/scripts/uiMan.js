@@ -141,25 +141,25 @@ var uiMan =
     },
     
     //reference to spring
-    springer: function()
+    springer: function(springName)
     {
-        this.spring.frame = 0;
-        src.physics.arcade.enable(this.spring);
-        this.spring.body.moves = false;
-        this.spring.body.setSize(115, 50, 6, 70);
-        this.springJump = this.spring.animations.add('bounce', [1, 2 , 3, 4, 5, 6, 7, 8, 9, 10], 10 , false);
+        springName.frame = 0;
+        src.physics.arcade.enable(springName);
+        springName.body.moves = false;
+        springName.body.setSize(115, 50, 6, 70);
+        this.springJump = springName.animations.add('bounce', [1, 2 , 3, 4, 5, 6, 7, 8, 9, 10], 10 , false);
     },
     
     //player and spring colliding - started in lvl update
-    updatedSpring: function()
+    updatedSpring: function(springName)
     {
         this.springJump = src.add.audio('springJump');
         this.springJump.play('', 0, 0.1, false, true );
         
-        if(this.spring.body.touching.up)
+        if(springName.body.touching.up)
         {
             gmMan.hero.body.velocity.y -= 1600;
-            this.spring.animations.play('bounce');
+            springName.animations.play('bounce');
         }  
     },
 

@@ -121,7 +121,7 @@ Platformowa.lvl2.prototype =
         //custom objects - spring
         this.spring = this.game.add.sprite(1605, 400, 'spring');
         uiMan.spring = this.spring;
-        uiMan.springer();
+        uiMan.springer(this.spring);
         
         //music
         uiMan.playMusic();
@@ -193,11 +193,9 @@ Platformowa.lvl2.prototype =
         b.jumpHeroObstacle(a);
     },
     
-     updateSpring: function()
+     updateSpring: function(a, b)
     {
-        uiMan.updatedSpring();
-        this.springJump = this.game.add.audio('springJump');
-        this.springJump.play('', 0, 0.1, false, true );
+        uiMan.updatedSpring(b);
     },
     
     identifyBonus: function(a, b)

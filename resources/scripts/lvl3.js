@@ -184,14 +184,7 @@ Platformowa.lvl3.prototype =
     {
         b.jumpHeroObstacle(a);
     },
-    
-     updateSpring: function()
-    {
-        uiMan.updatedSpring();
-        this.springJump = this.game.add.audio('springJump');
-        this.springJump.play('', 0, 0.1, false, true);
-    },
-    
+   
     identifyBonus: function(a, b)
     {
         b.jumpHeroBonus(a);
