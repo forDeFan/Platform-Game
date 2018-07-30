@@ -97,9 +97,12 @@ Platformowa.loadingScreen.prototype =
     
     create: function()
     {
-        //this.state.start('mainMenu');
+        this.state.start('mainMenu');
+        
+        //Testing purposes
+        
         //this.state.start('gameOver');
-        this.state.start('Poziom 4');
+        //this.state.start('Poziom 4');
     },
     
     loadUpdate: function()
