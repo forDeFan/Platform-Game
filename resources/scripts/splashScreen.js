@@ -11,7 +11,16 @@ Platformowa.splashScreen.prototype =
 {
     init: function(levelNumber, starsCollected)
     {
-        this.nextLevel = levelNumber + 1;
+        
+        if(levelNumber <= 3)
+        {
+            this.nextLevel = levelNumber + 1;
+        }
+        if(levelNumber >= 4)
+        {
+            this.nextLevel = 'Finałowy !';
+        }
+        
         this.starsCollected = starsCollected;
     },
     
