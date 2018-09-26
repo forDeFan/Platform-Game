@@ -43,7 +43,6 @@ Platformowa.lvl4.prototype =
         this.map.addTilesetImage('arrow', 'arrow');
         this.map.addTilesetImage('starGold', 'star');
         this.map.addTilesetImage('door', 'door');
-        //this.map.addTilesetImage('jump', 'jump');
         this.map.addTilesetImage('key', 'key');
     },
     
@@ -101,8 +100,7 @@ Platformowa.lvl4.prototype =
         //Objects on map
         this.spikes = this.map.createFromObjects('Objects', 67, 'spikes', 0, true, false, this.spike, Obstacle, true, false);
         this.waters = this.map.createFromObjects('Objects', 65, 'water', 0, true, false, this.water, Obstacle, true, false);
-        this.stars = this.map.createFromObjects('Objects', 71, 'star', 0, true, false, this.star, Bonus, true, false);
-        //this.jumps = this.map.createFromObjects('Objects', 74, 'jump', 0, true, false, this.jump, Bonus, true, false);
+        this.stars = this.map.createFromObjects('Objects', 70, 'star', 0, true, false, this.star, Bonus, true, false);
         this.crates = this.map.createFromObjects('Objects', 66, 'crate', 0, true, false, this.crate, Bonus, true, false);
         
         //TODO usunąć obiekt z grupy i dodac mu fizyke
@@ -123,27 +121,6 @@ Platformowa.lvl4.prototype =
         this.spring3 = this.game.add.sprite(2775, 460, 'spring');
         uiMan.spring3 = this.spring3;
         uiMan.springer(this.spring3);
-     
-        
-        /*
-        //Flying platforms
-        this.platforms = this.add.physicsGroup();
-        
-        this.platform1 = this.platforms.create(1105, 520, 'platform');
-        this.platform2 = this.platforms.create(2800, 490, 'platform');
-        this.platform3 = this.platforms.create(4000, 480, 'platform');
-        
-        this.platforms.setAll('body.collideWorldBounds', true);
-        this.platforms.setAll('body.bounce.x', 1);
-        this.platforms.setAll('body.immovable', true);
-        
-        this.platform1.scale.setTo(0.5);
-        this.platform2.scale.setTo(0.5);
-        this.platform3.scale.setTo(0.5);
-        this.platform1.body.velocity.x = 100;
-        this.platform2.body.velocity.x = 100;
-        this.platform3.body.velocity.x = 100;
-        */
         
         //music
         uiMan.playMusic();
@@ -167,19 +144,36 @@ Platformowa.lvl4.prototype =
             this.enemy1.animations.play('turnRight');
             this.enemy1.animations.play('right');
         }
+        if(this.enemy1.body.x >= 1715)
+        {
+            this.enemy1.body.velocity.x *= -1;
+            this.enemy1.animations.play('turnLeft');
+            this.enemy1.animations.play('left');
+        }
         if(this.enemy2.body.x <= 800)
         {
             this.enemy2.body.velocity.x *= -1;
             this.enemy2.animations.play('turnRight');
             this.enemy2.animations.play('right');
         }
-        if(this.enemy3.body.x >= 1690)
+        if(this.enemy2.body.x >= 1715)
+        {
+            this.enemy2.body.velocity.x *= -1;
+            this.enemy2.animations.play('turnLeft');
+            this.enemy2.animations.play('left');
+        }
+        if(this.enemy3.body.x <= 800)
+        {
+            this.enemy3.body.velocity.x *= -1;
+            this.enemy3.animations.play('turnRight');
+            this.enemy3.animations.play('right');
+        }
+        if(this.enemy3.body.x >= 1715)
         {
             this.enemy3.body.velocity.x *= -1;
             this.enemy3.animations.play('turnLeft');
             this.enemy3.animations.play('left');
         }
-        
         
         //general map collisions
         this.game.physics.arcade.collide([this.enemy1, this.enemy2, this.enemy3, this.hero], this.groundLayer);
@@ -249,9 +243,13 @@ Platformowa.lvl4.prototype =
     {
         //this.game.debug.quadTree(this.game.physics.arcade.quadTree);
         //this.game.debug.body(this.hero);
-        //this.game.debug.body(this.enemy);
+        //this.game.debug.body(this.enemy1);
+        //this.game.debug.body(this.enemy2);
+        //this.game.debug.body(this.enemy3);
         //this.game.debug.bodyInfo(this.hero, 5, 5);
-        //this.game.debug.bodyInfo(this.enemy, 300, 300);
+        //this.game.debug.bodyInfo(this.enemy1, 300, 300);
+        //this.game.debug.bodyInfo(this.enemy2, 300, 500);
+        //this.game.debug.bodyInfo(this.enemy3, 300, 700);
     }
     
 };

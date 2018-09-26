@@ -26,10 +26,13 @@ var Enemy = function(game, x, y, typeImg, scale, frame)
     
     //enemy move aimations
     this.animations.add('left', [4,5,6,7], 7, true);
+    this.animations.add('bossLeft', [3,4,5], 5, true);
     this.animations.add('turnLeft', [0,1,2,3,4,5,6,7], 2, false);
     this.animations.add('right', [8,9,10,11], 7, true);
+    this.animations.add('bossRight', [7,8,9], 5, true);
     this.animations.add('turnRight', [8,9,10,11,12,13,14,15], 2, false);
     this.animations.add('enemyAttack', [0,1,2,3,4,12,13,14,15,8,9,10,11], 5, false);
+    this.animations.add('bossAttack', [0,1,2,3,4,12,13,14,15,8,9,10,11,0,1,2,3,4,12,13,14,15,8,9,10,11], 2, false);
 };
 
 Enemy.prototype = Object.create(Phaser.Sprite.prototype);
@@ -41,6 +44,15 @@ Enemy.prototype.attack = function(Hero)
     {
         this.enemyAttack.play('', 0, 0.06, false, true);
         this.animations.play('enemyAttack');
+    }
+    if(this.body.touching.down && Hero.body.touching.up)
+    {
+        this.enemyAttack.play('', 0, 0.06, false, true);
+        this.animations.play('bossAttack');
+        
+        src.time.events.add(800, function() {    
+            this.animations.play('bossRight');
+        }, this);
     }
 };
 

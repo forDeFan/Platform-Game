@@ -59,7 +59,6 @@ var gmMan =
     pauseMenu: function()
     {
         //Pause menu
-        //TODO przenieść do menagera gry
         this.pauseHeader = customMethods.newText(src.width * 0.5, (src.height * 0.5) - 200, "PAUZA", 90, 0.5, 0.5, 'center', 'red', 'orange', 4);
         this.unpasueText = customMethods.newText(src.width * 0.5, (src.height * 0.5) - 50, "aby wznowić grę wciśnij 'P'", 40, 0.5, 0.5, 'center', 'red', 'white', 2);
         this.restartText = customMethods.newText(src.width * 0.5, src.height * 0.5, "aby zrestartować poziom wciśnij 'R'", 40, 0.5, 0.5, 'center', 'red', 'white', 2);

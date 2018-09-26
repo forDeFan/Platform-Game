@@ -4,7 +4,7 @@ var Platformowa = Platformowa || {};
 var configuration =
 {
     width: window.innerWidth/1.5 * window.devicePixelRatio,
-    height: window.innerHeight *0.72 * window.devicePixelRatio,
+    height: window.innerHeight *0.717 * window.devicePixelRatio,
     //forcing canvas for better FPS ratio on large screen
     render: Phaser.CANVAS
 };
@@ -22,6 +22,7 @@ Platformowa.game.state.add('Poziom 1', Platformowa.lvl1);
 Platformowa.game.state.add('Poziom 2', Platformowa.lvl2);
 Platformowa.game.state.add('Poziom 3', Platformowa.lvl3);
 Platformowa.game.state.add('Poziom 4', Platformowa.lvl4);
+Platformowa.game.state.add('Poziom 5', Platformowa.lvl5);
 
 //Game state start
 Platformowa.game.state.start('Launcher'); 

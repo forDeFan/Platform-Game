@@ -65,6 +65,8 @@ Platformowa.loadingScreen.prototype =
         
         //Hero and enemies soritesheets
         this.load.spritesheet('enemy', 'resources/graphic/characters/enemy.png', 80, 80);
+        this.load.spritesheet('boss', 'resources/graphic/characters/boss2.png', 118, 118);
+        this.load.spritesheet('bullet','resources/graphic/characters/fireball.png', 32, 32);
         this.load.spritesheet('hero', 'resources/graphic/characters/hero/girl.png', 171, 185.5);
         this.load.spritesheet('heroDeath', 'resources/graphic/characters/hero/ghostt.png', 32, 48);
         
@@ -73,6 +75,7 @@ Platformowa.loadingScreen.prototype =
         this.load.tilemap('lvl2', 'resources/lvlMap/lvl2.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('lvl3', 'resources/lvlMap/lvl3.json', null, Phaser.Tilemap.TILED_JSON);
         this.load.tilemap('lvl4', 'resources/lvlMap/lvl4.json', null, Phaser.Tilemap.TILED_JSON);
+        this.load.tilemap('lvl5', 'resources/lvlMap/lvl5.json', null, Phaser.Tilemap.TILED_JSON);
         
         //Map tiles
         this.load.image('ground', 'resources/graphic/tiles/tiles.png');
@@ -92,17 +95,16 @@ Platformowa.loadingScreen.prototype =
         this.load.image('platform', 'resources/graphic/objects/platform.png');
         this.load.image('liane', 'resources/graphic/objects/liane.png');
         this.load.spritesheet('spring', 'resources/graphic/objects/SpringSpriteSheet.png', 125, 126);
-        this.load.spritesheet('bubble', 'resources/graphic/objects/bubbleSpriteSheet.png', 192, 190);
     },
     
     create: function()
     {
-        this.state.start('mainMenu');
+        //this.state.start('mainMenu');
         
         //Testing purposes
         
         //this.state.start('gameOver');
-        //this.state.start('Poziom 4');
+        this.state.start('Poziom 5');
     },
     
     loadUpdate: function()

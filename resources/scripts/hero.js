@@ -93,6 +93,45 @@ Hero.prototype.dead = function(Enemy)
         this.killTween.start();
     }
     
+    if(Enemy.body.touching.down && this.body.touching.up)
+    {
+        this.heroHurt.play('', 0 , 0.05, false, true);
+        this.hurt = true;
+        this.alpha = 0;
+        
+        Enemy.body.velocity.x = 0;
+        
+        this.death.visible = true;
+        this.death.x = this.x;
+        this.death.y = this.y + this.height*2;
+        this.death.play('death');
+        
+        this.heroGhost.play('', 0 , 0.05, false, true);
+        
+        uiMan.liveKill();
+        
+        this.killTween = this.game.add.tween(this.death);
+        this.killTween.to({y:5}, 1500, Phaser.Easing.Linear.None);
+        
+        this.killTween.onComplete.addOnce(function()
+        {    
+            this.death.visible = false;
+            
+            this.hurt = false;
+            this.alpha = 1;
+            //spawning hero at the beggining of the map
+            this.x = 50;
+            this.y = 10;
+            
+            Enemy.body.velocity.x = 100;
+            
+            this.heroReviwe.play('', 0 , 0.05, false, true);
+            
+        }, this);
+        
+        this.killTween.start();
+    }
+    
     else
     {
         this.body.velocity.y -= 350;
