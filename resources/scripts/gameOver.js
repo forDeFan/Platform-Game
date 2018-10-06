@@ -27,20 +27,22 @@ Platformowa.gameOver.prototype =
     
     create: function()
     {
+        uiMan.stopMusic();
+        
         //this.stage.backgroundColor = '#000000';
         //this.world.setBounds(this.game.width, this.game.height);
         
         //background
-        this.background = this.game.add.sprite(0, 0, 'background');
-        this.background.scale.setTo(1, 0.65);
+        //this.background = this.game.add.sprite(0, 0, 'background');
+        //this.background.scale.setTo(1, 0.65);
         
-        var blurX = src.add.filter('BlurX');
-        var blurY = src.add.filter('BlurY');
+        //var blurX = src.add.filter('BlurX');
+        //var blurY = src.add.filter('BlurY');
 
-        blurX.blur = 30;
-        blurY.blur = 30;
+        //blurX.blur = 30;
+        //blurY.blur = 30;
         
-        this.background.filters = [blurX, blurY];
+        //this.background.filters = [blurX, blurY];
         
         //header text
         this.headerText = customMethods.newText(this.game.width*0.5, (this.game.height*0.5) - 220, 'Koniec Gry', 50, 0.5, 0.5, 'center', 'red', 'orange', 2);

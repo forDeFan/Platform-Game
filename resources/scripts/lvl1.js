@@ -87,7 +87,7 @@ Platformowa.lvl1.prototype =
         this.stars = this.map.createFromObjects('Objects', 67, 'star', 0, true, false, this.star, Bonus, true, false);
         this.jumps = this.map.createFromObjects('Objects', 70, 'jump', 0, true, false, this.jump, Bonus, true, false);
         
-        //TODO usunąć obiekt z grupy i dodac mu fizyke
+        //doors to next level
         this.doors = this.map.createFromObjects('Objects', 69, 'door', 0, true, false, this.door, Obstacle, true, false);
         //condition for open door for next level
         this.keys = this.map.createFromObjects('Objects', 71, 'key', 0, true, false, this.key, Bonus, true, false);
@@ -179,7 +179,6 @@ Platformowa.lvl1.prototype =
     {
         b.dead(a);
         a.attack(b);
-        b.damage(a);
     },
     
     nextLvl: function()

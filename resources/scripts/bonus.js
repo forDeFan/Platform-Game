@@ -64,7 +64,7 @@ Bonus.prototype.jumpHeroBonus = function(Hero)
             break;
             
         case 'crate':
-            //when hero 
+            //when hero step on boxes in lvl 4
             this.rotationSpeed = 50;
             this.body.angularVelocity = this.rotationSpeed;
             

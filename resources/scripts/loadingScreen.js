@@ -10,6 +10,9 @@ Platformowa.loadingScreen.prototype =
     {        
         //Logo text on loading screen
         this.logoText = customMethods.newText(this.game.width*0.5, (this.game.height*0.5)-50, 'Go Monsters !!!', 80, 0.5, 0.5, 'center', 'red', 'orange', 2);
+        
+        //Health bar
+        this.load.spritesheet('healthBar', 'resources/graphic/main/hBar.png', 240, 40, 2);
      
         //Loading bar
         this.emptyBar = this.add.sprite(this.game.width*0.5, (this.game.height*0.5) + 220, 'LoadingBars');
@@ -101,10 +104,9 @@ Platformowa.loadingScreen.prototype =
     {
         //this.state.start('mainMenu');
         
-        //Testing purposes
-        
+        //for testing purposes
         //this.state.start('gameOver');
-        this.state.start('Poziom 5');
+        this.state.start('Poziom Finałowy !');
     },
     
     loadUpdate: function()

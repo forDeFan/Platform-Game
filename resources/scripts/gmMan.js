@@ -35,7 +35,6 @@ var gmMan =
     },
     
     //Blurred background effect in menus
-    //TODO uruchomić - póki co powtarza sie w menusach
      blurPreloaded: function()
     {
         src.load.script('BlurX', 'https://cdn.rawgit.com/photonstorm/phaser-ce/master/filters/BlurX.js');

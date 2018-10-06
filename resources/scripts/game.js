@@ -22,7 +22,7 @@ Platformowa.game.state.add('Poziom 1', Platformowa.lvl1);
 Platformowa.game.state.add('Poziom 2', Platformowa.lvl2);
 Platformowa.game.state.add('Poziom 3', Platformowa.lvl3);
 Platformowa.game.state.add('Poziom 4', Platformowa.lvl4);
-Platformowa.game.state.add('Poziom 5', Platformowa.lvl5);
+Platformowa.game.state.add('Poziom Finałowy !', Platformowa.lvl5);
 
 //Game state start
 Platformowa.game.state.start('Launcher'); 

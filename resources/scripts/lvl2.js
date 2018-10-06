@@ -209,7 +209,6 @@ Platformowa.lvl2.prototype =
     {
         b.dead(a);
         a.attack(b);
-        b.damage(a);
     },
     
     nextLvl: function()

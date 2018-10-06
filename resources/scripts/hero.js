@@ -19,10 +19,19 @@ var Hero = function(game, x, y, typeImg, scale, frame)
     this.jumpButton = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     
     //Hero stats
+    //lives for life counter
     this.maxLives = 3;
+    //health for boss level
     this.health = 100;
+    //dmg rate for boss level shoot
+    this.dmgRate = 10;
+    //shooting for boss level
+    this.bulletFetched = false;
+    //key fetched
     this.openDoor = false;
+    //
     this.hurt = false;
+    //liane climbing
     this.climbing = false;
     
     //Hero body size for collisions
@@ -142,7 +151,7 @@ Hero.prototype.dead = function(Enemy)
 Hero.prototype.update = function()
 {   
     //if Hero is Dead start game over state
-    if(this.maxLives <= 0 || Hero.health <= 0)
+    if(this.maxLives <= 0)
     {
         this.kill();
         this.openDoor = false;
@@ -253,5 +262,43 @@ Hero.prototype.update = function()
         {
             this.animations.stop('right');
         }
+    }
+    
+//Hero hit by bullet or bomb descending health factor
+    
+    if(this.health <= 0)
+    {
+        this.heroHurt.play('', 0 , 0.05, false, true);
+        this.hurt = true;
+        this.alpha = 0;
+        this.health = 100;
+        
+        this.death.visible = true;
+        this.death.x = this.x;
+        this.death.y = this.y + this.height*2;
+        this.death.play('death');
+        
+        this.heroGhost.play('', 0 , 0.05, false, true);
+        
+        uiMan.liveKill();
+        
+        this.killTween = this.game.add.tween(this.death);
+        this.killTween.to({y:5}, 1500, Phaser.Easing.Linear.None);
+        
+        this.killTween.onComplete.addOnce(function()
+        {    
+            this.death.visible = false;
+            
+            this.hurt = false;
+            this.alpha = 1;
+            //spawning hero at the beggining of the map
+            this.x = 50;
+            this.y = 200;
+            
+            this.heroReviwe.play('', 0 , 0.05, false, true);
+            
+        }, this);
+        
+        this.killTween.start();
     }
 };
