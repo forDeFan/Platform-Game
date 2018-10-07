@@ -44,9 +44,7 @@ Enemy.prototype.update = function()
 {
     if(this.health <= 0)
     {
-        console.log('enemy dead');
         this.body.velocity.x = 0;
-        this.angle += 1;
         this.dead = true;
         this.animations.play('bossDie');
     }

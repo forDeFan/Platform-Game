@@ -6,7 +6,6 @@ var Platformowa = Platformowa || {};
 
 Platformowa.splashScreen = function(game) {};
 
-//Object programming by prototypes
 Platformowa.splashScreen.prototype = 
 {
     init: function(levelNumber, starsCollected)
@@ -19,6 +18,7 @@ Platformowa.splashScreen.prototype =
         if(levelNumber >= 4)
         {
             this.nextLevel = 'Finałowy !';
+            this.bossLevel = true;
         }
         
         this.starsCollected = starsCollected;
@@ -50,11 +50,32 @@ Platformowa.splashScreen.prototype =
         
         this.background.filters = [blurX, blurY];
         
-        //Doors png
-        this.success = customMethods.newSprite(this.game.width*0.5, this.game.height*0.5, 'successImage', 0.5, 0.5, true)
+        //if boss was defeated
+        if(this.bossLevel)
+        {
+            //boss image
+            this.bossImage = customMethods.newSprite(this.game.width*0.5, this.game.height * 0.4, 'boss', 3, 0.5, 0.4, true)
+            
+            //level header
+            this.headerText = customMethods.newText(this.game.width*0.5, this.game.height * 0.5, 'Poziom ' + this.nextLevel, 48, 0.5, 0.5, 'center', 'red', 'orange', 2);
+            
+            //gaming instruction text
+            this.bossInfoText = customMethods.newText(this.game.width*0.5, this.game.height*0.65, 'Pokonaj bossa aby wygrać grę \n\ zbierz niebieski pocisk i zacznij strzelać celując myszką', 28, 0.5, 0.5, 'center', 'red', 'orange', 2);
+            
+            //boss level starting button
+            var startButton = customMethods.newButton(this.game.width*0.5, this.game.height * 0.85, 'Button', function(){this.state.start('Poziom' + ' ' + this.nextLevel, true, false, this.starsCollected);}, this, true, null, null);
+            
+            var buttonText = customMethods.newText(startButton.x, startButton.y, '!! Start !!', 30, 0.5, 0.5, 'red', 'orange', 2);
+        }
+        //if normal level not boss level
+        else
+        {
+            //Goblet image in the splash screen
+            this.success = customMethods.newSprite(this.game.width*0.5, this.game.height*0.5, 'successImage', 0.5, 0.5, true)
         
-        //Game over header
-        var headerText = customMethods.newText(this.game.width*0.5, this.game.height*0.65, 'Poziom ' + this.nextLevel +'\n' + 'Przygotuj się !', 48, 0.5, 0.5, 'center', 'red', 'orange', 2);
+            //Game over header
+            this.headerText = customMethods.newText(this.game.width*0.5, this.game.height*0.65, 'Poziom ' + this.nextLevel +'\n' + 'Przygotuj się !', 48, 0.5, 0.5, 'center', 'red', 'orange', 2);
+        }
         
     },
     
@@ -62,9 +83,13 @@ Platformowa.splashScreen.prototype =
     {
         var starsCollected = this.starsCollected;
         
-        src.time.events.add(2000, function() {      
+        if(!this.bossLevel)
+        {
+            //starting next level after particular time
+            src.time.events.add(2000, function() {      
             
             this.state.start('Poziom' + ' ' + this.nextLevel, true, false, starsCollected);    
-        }, this);
+        }, this);  
+        }
     }
 };

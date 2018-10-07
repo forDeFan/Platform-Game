@@ -49,6 +49,24 @@ var uiMan =
         }, this);
     },
     
+    //Hitpoints show at hit
+    hitpointsText: function(x, y, text, size, textColor = 'white', strokeColor = 'white', strokeSize = 4, tStart, tEnd)
+    {
+        var hitText = customMethods.newText(x, y, text, size, 0.5, 0.5, 'center', textColor, strokeColor, strokeSize);
+        
+        hitText.alpha = 0;
+
+        //text appearing
+        src.time.events.add(100, function() {      
+            src.add.tween(hitText).to({alpha: 1}, tStart, Phaser.Easing.Linear.None, true);
+        }, this);
+
+        //text vanishing
+        src.time.events.add(tEnd, function() {    
+            src.add.tween(hitText).to({alpha: 0}, tEnd, Phaser.Easing.Linear.None, true);
+        }, this);
+    },
+    
     //Key menu info in right top corner of game window
     keyMenu: function()
     {

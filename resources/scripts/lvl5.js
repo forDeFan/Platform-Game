@@ -47,27 +47,27 @@ Platformowa.lvl5.prototype =
         gmMan.hero = this.hero;
         
         //enemy - boss
-        this.boss = new Enemy(this.game, 1130, 200, 'boss', 3, 8);
+        this.boss = new Enemy(this.game, 1130, 180, 'boss', 3, 8);
         this.boss.body.gravity.y = 0;
         this.boss.body.setSize(90, 70, 15, 40);
-        this.boss.health = 400;
+        this.boss.health = 20;
         this.boss.maxHealth = this.boss.health;
         
         //boss fly mode by tween
-        this.bossTween = this.game.add.tween(this.boss).to({y: this.game.height * 0.4}, 800, Phaser.Easing.Linear.None, true);
+        this.bossTween = this.game.add.tween(this.boss).to({y: this.game.height * 0.45}, 800, Phaser.Easing.Linear.None, true);
         this.bossTween.yoyo(900, true).loop(true);
+        
+        //showing enemy actual hitpoints abowe health bar
+        this.HPcounter = customMethods.newText(0, -40, this.boss.health, 8, 0.5, 0.5, 'center', 'orange', 'black', 0.1);
         
         //enemy health bar
         this.emptyHB = customMethods.newSprite(-25, -35, 'healthBar', 0, 0, 0, 0.2, 0.1);
         this.fullHB = customMethods.newSprite(this.emptyHB.x, this.emptyHB.y, 'healthBar', 1, 0, 0, 0.2, 0.1);
         this.rectHB = new Phaser.Rectangle(0, 0, this.emptyHB.width / this.emptyHB.scale.x, this.emptyHB.height / this.emptyHB.scale.y);
         
-        //health bar transparency
-        this.emptyHB.alpha = this.fullHB.alpha = this.rectHB.alpha = 0.4;
+        //health bar hidden until hero pick up blue bullet
+        this.emptyHB.alpha = this.fullHB.alpha = this.rectHB.alpha = this.HPcounter.alpha = 0;
         
-        //showing enemy actual hitpoints abowe health bar
-        this.HPcounter = customMethods.newText(0, -40, this.boss.health, 8, 0.5, 0.5, 'center', 'orange', 'black', 0.1);
- 
         //attaching HB to boss for tracking
         this.boss.addChild(this.emptyHB);
         this.boss.addChild(this.fullHB);
@@ -182,13 +182,16 @@ Platformowa.lvl5.prototype =
             this.bossTween.stop();
             
             //rolling boss out of the scene in tween
-            this.game.add.tween(this.boss.scale).to({ x:0.01, y:0.01}, 1000, Phaser.Easing.Linear.None, true);
+            this.game.add.tween(this.boss.scale).to({ x:0.01, y:0.01}, 1500, Phaser.Easing.Linear.None, true);
+            this.boss.angle += 4;
             
             //stopping boss and hero shoot
-            this.heroB.autofire = false;
-            this.bossBombs.autofire = false;
-            this.bossB.autofire = false;
+            this.heroB.autofire = this.bossBombs.autofire = this.bossB.autofire = false;
             this.hero.bulletFetched = false;
+            
+            //all bullest and bombs destroyed
+            this.bullets.destroy();
+            this.bombs.destroy();
             
             //winning text show up
             uiMan.eventTextShow('ZWYCIĘSTWO !', this.game.width * 0.5, (this.game.height * 0.5) - 10, 80, 900, 1000);
@@ -196,12 +199,11 @@ Platformowa.lvl5.prototype =
             //showing of Game Over state
             this.game.time.events.add(7000, function() 
             {      
-                 this.state.start('gameOver', true, false);
-                
+                this.state.start('gameOver', true, false);
             }, this);
-            
         }
         
+        //hero bullet pick up action
         if(gmMan.hero.bulletFetched)
         {
             //bullet shot by boss toward hero
@@ -209,6 +211,12 @@ Platformowa.lvl5.prototype =
             
             //bullet shot by hero toward boss aiming on mouse pointer
             this.heroB.fireAtPointer();
+            
+            this.heroB.autofire = true;
+            this.bossB.autofire = true;
+            
+            //boss health bar go visible
+            this.emptyHB.alpha = this.fullHB.alpha = this.rectHB.alpha = this.HPcounter.alpha = 0.4;
         }
     
         //Boss animations update
@@ -247,16 +255,10 @@ Platformowa.lvl5.prototype =
     bulletFetch: function(a, b)
     {
         a.kill();
-        
-        uiMan.eventTextShow('Celuj myszką żeby strzelać', gmMan.hero.x, gmMan.hero.y - 70, 30, 10, 1200);
-        
-        //weapon at hero and boss start firing
         this.hero.bulletFetched = true;
-        
-        this.heroB.autofire = true;
-        this.bossB.autofire = true;
     },
     
+    //when bullet or bomb hit ground or world bounds
     bulletObstacle: function(a, b)
     {
         a.kill();
@@ -270,18 +272,17 @@ Platformowa.lvl5.prototype =
         gmMan.hero.health = a.health - this.bombHit;
         
         //hero damage amount shown on hit
-        this.heroLifeText = uiMan.eventTextShow('- ' + this.bombHit + 'HP', gmMan.hero.body.x, gmMan.hero.y - 60, 30, 1, 20);
- 
+        this.heroLifetText = uiMan.hitpointsText(gmMan.hero.x, gmMan.hero.y - 60, '- ' + this.bombHit + ' HP', 20, 'red', 'orange', 1, 100, 400);
     },
     
     heroCollideBullet: function(a, b)
     {
         b.kill();
         this.bulletbHit = this.boss.dmgRate * 2.5;
-        gmMan.hero.health = a.health - this.bombHit;
+        gmMan.hero.health = a.health - this.bulletbHit;
         
         //hero damage amount shown on hit
-        this.heroLifeText = uiMan.eventTextShow('- ' + this.bulletbHit + 'HP', gmMan.hero.body.x, gmMan.hero.y - 60, 30, 1, 20);
+        this.heroLifetText = uiMan.hitpointsText(gmMan.hero.x, gmMan.hero.y - 60, '- ' + this.bulletbHit + ' HP', 20, 'red', 'orange', 1, 100, 400);
     },
     
     enemyCollideBullet: function(a, b)
@@ -293,7 +294,7 @@ Platformowa.lvl5.prototype =
         this.fullHB.crop(this.rectHB);
         
         //boss damage amount text shown on hit
-        this.bossLifeText = uiMan.eventTextShow('- ' + gmMan.hero.dmgRate + 'HP', this.boss.x, this.boss.y - 100, 30, 1, 50);
+        this.bossLifetText = uiMan.hitpointsText(this.boss.x, this.boss.y - 60, '- ' + gmMan.hero.dmgRate + ' HP', 25, 'red', 'orange', 1, 100, 400);
     },
     
     render: function()

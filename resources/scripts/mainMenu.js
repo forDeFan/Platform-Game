@@ -6,7 +6,6 @@ var Platformowa = Platformowa || {};
 
 Platformowa.mainMenu = function(game) {};
 
-//Inheritance by prototypes
 Platformowa.mainMenu.prototype = 
 {
     preload: function()
