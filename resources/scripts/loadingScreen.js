@@ -102,11 +102,11 @@ Platformowa.loadingScreen.prototype =
     
     create: function()
     {
-        //this.state.start('mainMenu');
+        this.state.start('mainMenu');
         
         //for testing purposes
         //this.state.start('gameOver');
-        this.state.start('Poziom Finałowy !');
+        //this.state.start('Poziom Finałowy !');
     },
     
     loadUpdate: function()
