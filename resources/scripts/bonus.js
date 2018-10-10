@@ -10,6 +10,7 @@ var Bonus = function(game, x, y, typeImg)
     this.body.gravity.y = 0;
     this.body.immovable = true;
     
+    //bonus rotation 
     if(this.type === 'star')
     {
         this.rotationSpeed = 220;
@@ -52,11 +53,13 @@ Bonus.prototype.jumpHeroBonus = function(Hero)
             break;
         
         case 'arrow':
+            //arrow troggered event in lvl4
             uiMan.eventTextShow('Uwaga ! Ruchome skrzynie !', this.body.x, src.height*0.2, 40, 200, 200, true);
             
             break;
             
         case 'jump':
+            //jump bottle
             gmMan.hero.body.velocity.y -= 550;
             this.kill();
             this.bonusCollected.play('', 0, 0.06, false, true );

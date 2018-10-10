@@ -52,6 +52,12 @@ Platformowa.loadingScreen.prototype =
         
         //Audio files for Enemy
         this.load.audio('enemyAttack', 'resources/sound/enemyAttack.wav');
+        this.load.audio('enemyHurt', 'resources/sound/enemyHurt.wav');
+        
+        //Audio weapon sounds
+        this.load.audio('heroBullet', 'resources/sound/heroBullet.wav');
+        this.load.audio('enemyBullet', 'resources/sound/enemyBullet.wav');
+        this.load.audio('enemyBomb', 'resources/sound/enemyBomb.wav');
         
         //Button image
         this.load.spritesheet('Button', 'resources/graphic/main/button.png', 300, 100, 3);
@@ -105,6 +111,7 @@ Platformowa.loadingScreen.prototype =
         this.state.start('mainMenu');
         
         //for testing purposes
+        
         //this.state.start('gameOver');
         //this.state.start('Poziom Finałowy !');
     },

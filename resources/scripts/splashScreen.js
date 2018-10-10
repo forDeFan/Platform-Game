@@ -74,7 +74,7 @@ Platformowa.splashScreen.prototype =
             this.success = customMethods.newSprite(this.game.width*0.5, this.game.height*0.5, 'successImage', 0.5, 0.5, true)
         
             //Game over header
-            this.headerText = customMethods.newText(this.game.width*0.5, this.game.height*0.65, 'Poziom ' + this.nextLevel +'\n' + 'Przygotuj się !', 48, 0.5, 0.5, 'center', 'red', 'orange', 2);
+            this.headerText = customMethods.newText(this.game.width*0.5, this.game.height*0.65, 'Poziom ' + this.nextLevel + ' z 5' + '\n' + 'Przygotuj się !', 48, 0.5, 0.5, 'center', 'red', 'orange', 2);
         }
         
     },

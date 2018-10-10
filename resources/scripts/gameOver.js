@@ -8,9 +8,10 @@ Platformowa.gameOver = function(game) {};
 
 Platformowa.gameOver.prototype = 
 {   
-    init: function(saveConfig)
+    init: function(saveConfig, bossDefeated)
     {
         var config = JSON.parse(localStorage.getItem('this.saveConfig'));
+        this.bossDefeated = bossDefeated;
         
         if(config === null)
         {
@@ -28,13 +29,14 @@ Platformowa.gameOver.prototype =
     create: function()
     {
         uiMan.stopMusic();
+        console.log(this.bossDefeated);
         
         //this.stage.backgroundColor = '#000000';
         //this.world.setBounds(this.game.width, this.game.height);
         
         //background
-        //this.background = this.game.add.sprite(0, 0, 'background');
-        //this.background.scale.setTo(1, 0.65);
+        this.background = this.game.add.sprite(0, 0, 'background');
+        this.background.scale.setTo(1, 0.65);
         
         //var blurX = src.add.filter('BlurX');
         //var blurY = src.add.filter('BlurY');
@@ -44,10 +46,19 @@ Platformowa.gameOver.prototype =
         
         //this.background.filters = [blurX, blurY];
         
+        if(this.bossDefeated)
+        {
+            this.headerText = customMethods.newText(this.game.width*0.5, (this.game.height*0.5) - 220, 'WYGRANA - Boss pokonany !', 50, 0.5, 0.5, 'center', 'red', 'orange', 2);
+            this.resultsText = customMethods.newText(this.game.width*0.5, (this.game.height*0.5) - 120, 'Gratulacje', 60, 0.5, 0.5, 'red', 'orange', 3);
+            this.starsText = customMethods.newText(this.game.width*0.5, (this.game.height*0.5) - 60, 'Zebrane gwiazdki: ' + this.starsCollected, 30, 0.5, 0.5, 'red', 'orange', 3);
+        }
+        else
+        {
         //header text
         this.headerText = customMethods.newText(this.game.width*0.5, (this.game.height*0.5) - 220, 'Koniec Gry', 50, 0.5, 0.5, 'center', 'red', 'orange', 2);
         //results text
         this.resultsText = customMethods.newText(this.game.width*0.5, (this.game.height*0.5) - 120, 'Poziom na którym zakończono: ' + this.levelReached + '\n' + 'Zaliczone gwiazdki: ' + this.starsCollected, 30, 0.5, 0.5, 'red', 'orange', 3);
+        }
 
         //main menu groups for buttons and buttons text
         this.mainMenu = this.add.group();

@@ -19,6 +19,9 @@ var Enemy = function(game, x, y, typeImg, scale, frame)
     this.dmgRate = 10;
     this.dead = false;
     
+    //enemy hurt sound
+    this.enemyHurt = this.game.add.audio('enemyHurt');
+    
     //body size for collisions
     this.body.setSize(40, 70, 20, 7);
     
@@ -34,7 +37,7 @@ var Enemy = function(game, x, y, typeImg, scale, frame)
     this.animations.add('turnRight', [8,9,10,11,12,13,14,15], 2, false);
     this.animations.add('enemyAttack', [0,1,2,3,4,12,13,14,15,8,9,10,11], 5, false);
     this.animations.add('bossAttack', [0,1,2,3,4,12,13,14,15,8,9,10,11,0,1,2,3,4,12,13,14,15,8,9,10,11], 2, false);
-    this.animations.add('bossDie', [1,2,3,13,14,15], 5, false);
+    this.animations.add('bossDie', [1,2,3,13,14,15], 10, false);
 };
 
 Enemy.prototype = Object.create(Phaser.Sprite.prototype);
@@ -42,6 +45,7 @@ Enemy.prototype.constructor = Enemy;
 
 Enemy.prototype.update = function()
 {
+    //boss die animation
     if(this.health <= 0)
     {
         this.body.velocity.x = 0;
@@ -52,11 +56,14 @@ Enemy.prototype.update = function()
 
 Enemy.prototype.attack = function(Hero)
 {
+    //enemy attack animations
     if(this.body.touching.left && Hero.body.touching.right || this.body.touching.right && Hero.body.touching.left)
     {
         this.enemyAttack.play('', 0, 0.06, false, true);
         this.animations.play('enemyAttack');
     }
+    
+    //boss movement animations
     if(this.body.touching.down && Hero.body.touching.up)
     {
         this.enemyAttack.play('', 0, 0.06, false, true);

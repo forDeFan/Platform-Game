@@ -50,7 +50,7 @@ Platformowa.lvl5.prototype =
         this.boss = new Enemy(this.game, 1130, 180, 'boss', 3, 8);
         this.boss.body.gravity.y = 0;
         this.boss.body.setSize(90, 70, 15, 40);
-        this.boss.health = 20;
+        this.boss.health = 400;
         this.boss.maxHealth = this.boss.health;
         
         //boss fly mode by tween
@@ -115,25 +115,25 @@ Platformowa.lvl5.prototype =
         this.ammoTween.yoyo(900, true).loop(true);
         
         //weapon sounds
-        this.heroShotSound = this.game.add.audio('buttonSelect');
-        this.bossShotSound = this.game.add.audio('buttonClick');
-        this.bossBombSound = this.game.add.audio('starCollected');
+        this.heroShotSound = this.game.add.audio('heroBullet');
+        this.bossShotSound = this.game.add.audio('enemyBullet');
+        this.bossBombSound = this.game.add.audio('enemyBomb');
         
         this.heroB.onFire.add(function()
         {
-            this.heroShotSound.play('', 0, 0.06, false, true);
+            this.heroShotSound.play('', 0, 0.015, false, true);
             
         }, this);
         
         this.bossB.onFire.add(function()
         {
-            this.bossShotSound.play('', 0, 0.06, false, true);
+            this.bossShotSound.play('', 0, 0.02, false, true);
             
         }, this);
         
         this.bossBombs.onFire.add(function()
         {
-            this.bossBombSound.play('', 0, 0.06, false, true);
+            this.bossBombSound.play('', 0, 0.08, false, true);
             
         }, this);
         
@@ -172,7 +172,7 @@ Platformowa.lvl5.prototype =
         //hp counter text for boss healthbar react for decreasing HP
         this.HPcounter.text = this.boss.health;
         
-        //conditions at boss death
+        //conditions starting at boss death
         if(this.boss.dead)
         {
             //hiding boss healtbar at geath
@@ -193,32 +193,40 @@ Platformowa.lvl5.prototype =
             this.bullets.destroy();
             this.bombs.destroy();
             
-            //winning text show up
+            //winning text show up when boss defeated
             uiMan.eventTextShow('ZWYCIĘSTWO !', this.game.width * 0.5, (this.game.height * 0.5) - 10, 80, 900, 1000);
             
             //showing of Game Over state
-            this.game.time.events.add(7000, function() 
-            {      
-                this.state.start('gameOver', true, false);
+            this.game.time.events.add(3000, function() 
+            {       
+                var bossDefeated = true;
+                var saveConfig = this.saveConfig;
+                
+                this.state.start('gameOver', true, false, saveConfig, bossDefeated);
+                
             }, this);
         }
         
-        //hero bullet pick up action
-        if(gmMan.hero.bulletFetched)
+        //hero bullet pick up action when hero is not hurt
+        if(gmMan.hero.bulletFetched && !gmMan.hero.hurt)
         {
             //bullet shot by boss toward hero
             this.bossB.fireAtSprite(gmMan.hero);
             
             //bullet shot by hero toward boss aiming on mouse pointer
             this.heroB.fireAtPointer();
-            
             this.heroB.autofire = true;
-            this.bossB.autofire = true;
             
             //boss health bar go visible
             this.emptyHB.alpha = this.fullHB.alpha = this.rectHB.alpha = this.HPcounter.alpha = 0.4;
         }
-    
+        
+        //when hero hurt hero stop shoot until show up again
+        if(gmMan.hero.bulletFetched && gmMan.hero.hurt)
+        {
+            this.heroB.autofire = false;
+        }
+        
         //Boss animations update
         if(this.boss.body.x <= 260)
         {
@@ -271,8 +279,11 @@ Platformowa.lvl5.prototype =
         this.bombHit = this.boss.dmgRate * 2;
         gmMan.hero.health = a.health - this.bombHit;
         
+        //this.bossBombSound.play('', 0, 0.08, false, true);
+        gmMan.hero.heroHurt.play('', 0, 0.015, false, true);
+        
         //hero damage amount shown on hit
-        this.heroLifetText = uiMan.hitpointsText(gmMan.hero.x, gmMan.hero.y - 60, '- ' + this.bombHit + ' HP', 20, 'red', 'orange', 1, 100, 400);
+        this.heroBombhitText = uiMan.hitpointsText(gmMan.hero.x, gmMan.hero.y - 60, '- ' + this.bombHit + ' HP', 20, 'red', 'orange', 1, 100, 400);
     },
     
     heroCollideBullet: function(a, b)
@@ -281,14 +292,18 @@ Platformowa.lvl5.prototype =
         this.bulletbHit = this.boss.dmgRate * 2.5;
         gmMan.hero.health = a.health - this.bulletbHit;
         
+        gmMan.hero.heroHurt.play('', 0, 0.015, false, true);
+        
         //hero damage amount shown on hit
-        this.heroLifetText = uiMan.hitpointsText(gmMan.hero.x, gmMan.hero.y - 60, '- ' + this.bulletbHit + ' HP', 20, 'red', 'orange', 1, 100, 400);
+        this.heroBullethitText = uiMan.hitpointsText(gmMan.hero.x, gmMan.hero.y - 60, '- ' + this.bulletbHit + ' HP', 20, 'red', 'orange', 1, 100, 400);
     },
     
     enemyCollideBullet: function(a, b)
     {
         b.kill();
         this.boss.health = a.health - gmMan.hero.dmgRate;
+        
+        this.boss.enemyHurt.play('', 0, 0.015, false, true);
         
         this.rectHB.width = Math.floor((this.boss.health/ this.boss.maxHealth) * this.emptyHB.width / this.emptyHB.scale.x);
         this.fullHB.crop(this.rectHB);
