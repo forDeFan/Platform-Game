@@ -1,4 +1,4 @@
-# Game1
+# Game 2 - Platform Game
 
 HTML game on Canvas with Phaser 2.8 framework and JS.
 
